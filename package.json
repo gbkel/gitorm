@@ -1,0 +1,20 @@
+{
+  "name": "@gbkel/gitorm",
+  "version": "1.0.0",
+  "description": "If you want to use a Github Repository as a database, you can do that with this ORM called Gitorm.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbkel/gitorm.git"
+  },
+  "keywords": [],
+  "author": "“Guilherme Bromonschenkel <guilhermebromonschenkel@gmail.com”> (https://www.guilherr.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gbkel/gitorm/issues"
+  },
+  "homepage": "https://github.com/gbkel/gitorm#readme"
+}
