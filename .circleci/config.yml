@@ -7,18 +7,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: set-node-env
-          command: echo 'export NODE_ENV="production"' >> $BASH_ENV
-      - run:
-          name: set-git-token
-          command: echo 'export GIT_TOKEN="8c595a16bcb513521aee0865f8acc4f987d98ca81"' >> $BASH_ENV
-      - run:
-          name: set-git-repo
-          command: echo 'export GIT_REPOSITORY="database"' >> $BASH_ENV
-      - run:
-          name: set-git-owner
-          command: echo 'export GIT_OWNER="gitorm-test"' >> $BASH_ENV
-      - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
