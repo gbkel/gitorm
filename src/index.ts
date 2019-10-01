@@ -1,1 +1,1 @@
-console.log("EAE")
+console.log('EAE')
