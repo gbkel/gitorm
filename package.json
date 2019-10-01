@@ -16,7 +16,8 @@
     "database",
     "github",
     "repository",
-    "orm"
+    "orm",
+    "databucket"
   ],
   "author": "“Guilherme Bromonschenkel <guilhermebromonschenkel@gmail.com”> (https://www.guilherr.me)",
   "license": "MIT",
