@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: set-node-env
+          command: echo 'export NODE_ENV="production"' >> $BASH_ENV
+      - run:
+          name: set-git-token
+          command: echo 'export GIT_TOKEN="8c595a16bcb513521aee0865f8acc4f987d98ca81"' >> $BASH_ENV
+      - run:
+          name: set-git-repo
+          command: echo 'export GIT_REPOSITORY="database"' >> $BASH_ENV
+      - run:
+          name: set-git-owner
+          command: echo 'export GIT_OWNER="gitorm-test"' >> $BASH_ENV
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: npm run test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results.xml
