@@ -35,3 +35,10 @@ const Gitorm = new gitorm({
 
 await Gitorm.connect()
 ```
+
+#### gitorm.find(options)
+
+```js
+// Finding a file
+const file = await Gitorm.find({ name: 'index.txt', path: '/src' })
+```
