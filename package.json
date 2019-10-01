@@ -12,6 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/gbkel/gitorm.git"
   },
+  "keywords": [
+    "database",
+    "github",
+    "repository",
+    "orm"
+  ],
   "author": "“Guilherme Bromonschenkel <guilhermebromonschenkel@gmail.com”> (https://www.guilherr.me)",
   "license": "MIT",
   "bugs": {
