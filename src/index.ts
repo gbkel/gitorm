@@ -6,10 +6,10 @@ export default class Gitorm {
 	status: any
 	owner: string
 
-	constructor(options: Options) {
-		this.token = options.token
-		this.repository = options.repository
-		this.owner = options.owner
+	constructor({ token, repository, owner }: Config) {
+		this.token = token
+		this.repository = repository
+		this.owner = owner
 	}
 
 	async connect() {
@@ -30,7 +30,7 @@ export default class Gitorm {
 	}
 }
 
-interface Options {
+interface Config {
 	token: string
 	repository: string
 	owner: string
