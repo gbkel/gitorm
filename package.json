@@ -1,6 +1,6 @@
 {
   "name": "@gbkel/gitorm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "If you want to use a Github Repository as a database, you can do that with this ORM called Gitorm.",
   "main": "index.ts",
   "scripts": {
