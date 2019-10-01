@@ -3,3 +3,6 @@
 
 # built typescript
 /dist
+
+# environmental
+.env
