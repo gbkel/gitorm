@@ -1,1 +1,1 @@
-export default './src'
+export default './src/index.ts'
