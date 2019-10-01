@@ -4,7 +4,9 @@ import * as assert from 'assert'
 
 describe('=> Repository connection', () => {
 	before(() => {
-		console.error = () => {}
+		console.error = () => {
+			return
+		}
 	})
 
 	it('Should connect to github repository', async () => {
