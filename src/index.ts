@@ -1,1 +1,3 @@
-console.log('EAE')
+class Gitorm {
+	token: string
+}

@@ -1,36 +1,40 @@
 {
-    "extends": "tslint:recommended",
-    "rules": {
-      "deprecation": {
-        "severity": "warn"
-      },
-      "max-line-length": [true, 140],
-      "member-access": false,
-      "member-ordering": [
-        true,
-        {
-          "order": ["static-field", "instance-field", "static-method", "instance-method"]
-        }
-      ],
-      "indent": [true, "spaces"],
-      "interface-name": false,
-      "no-duplicate-variable": true,
-      "no-eval": true,
-      "no-redundant-jsdoc": true,
-      "quotemark": [true, "single"],
-      "semicolon": false,
-      "templates-use-public": true,
-      "import-spacing": true,
-      "no-string-throw": false,
-      "no-namespace": [false],
-      "no-console": false,
-      "variable-name": false,
-      "one-line": false,
-      "one-variable-per-declaration": false,
-      "object-literal-sort-keys": false,
-      "ordered-imports": false,
-      "trailing-comma": false,
-      "extends": ["tslint:latest", "tslint-config-prettier"]
-    }
+	"extends": "tslint:recommended",
+	"rules": {
+		"deprecation": {
+			"severity": "warn"
+		},
+		"max-line-length": [true, 140],
+		"member-access": false,
+		"member-ordering": [
+			true,
+			{
+				"order": [
+					"static-field",
+					"instance-field",
+					"static-method",
+					"instance-method"
+				]
+			}
+		],
+		"indent": [true, "tabs"],
+		"interface-name": false,
+		"no-duplicate-variable": true,
+		"no-eval": true,
+		"no-redundant-jsdoc": true,
+		"quotemark": [true, "single"],
+		"semicolon": false,
+		"templates-use-public": true,
+		"import-spacing": true,
+		"no-string-throw": false,
+		"no-namespace": [false],
+		"no-console": false,
+		"variable-name": false,
+		"one-line": false,
+		"one-variable-per-declaration": false,
+		"object-literal-sort-keys": false,
+		"ordered-imports": false,
+		"trailing-comma": false,
+		"extends": ["tslint:latest", "tslint-config-prettier"]
+	}
 }
-  
