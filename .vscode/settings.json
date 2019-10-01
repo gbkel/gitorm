@@ -1,3 +1,10 @@
 {
-    "editor.formatOnSave": true,
+	"editor.formatOnSave": true,
+	"path-autocomplete.pathMappings": {
+		"~": "${folder}/app"
+	},
+	"editor.tabSize": 2,
+	"editor.autoIndent": true,
+	"editor.detectIndentation": true,
+	"prettier-tslint.tslintIntegration": true
 }
