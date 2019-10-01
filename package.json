@@ -1,7 +1,7 @@
 {
   "name": "gitorm",
-  "version": "0.0.4",
-  "description": "If you want to use a Github Repository as a database, you can do that with this ORM called Gitorm.",
+  "version": "0.0.2",
+  "description": "A simple ORM to use your Github Repositories as a Database and a Data Bucket with Node.js",
   "main": "index.ts",
   "scripts": {
     "test": "ts-mocha -p tsconfig.json src/**/*.test.ts",
