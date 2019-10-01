@@ -2,11 +2,11 @@
   "name": "@gbkel/gitorm",
   "version": "0.0.1",
   "description": "If you want to use a Github Repository as a database, you can do that with this ORM called Gitorm.",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "",
     "deploy": "git pull && vpdate && git push && npm publish --access public",
-    "dev": ""
+    "dev": "nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/gbkel/gitorm#readme",
   "devDependencies": {
+    "nodemon": "^1.19.3",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3",
     "vpdate": "^0.1.1"
   }
 }
