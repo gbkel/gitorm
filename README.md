@@ -4,12 +4,12 @@
 [![install size](https://packagephobia.now.sh/badge?p=gitorm)](https://packagephobia.now.sh/result?p=gitorm)
 [![CircleCI](https://circleci.com/gh/gbkel/gitorm/tree/master.svg?style=svg&circle-token=7bc6803f375b9f53b5dc1fd4e80739595caea83d)](https://circleci.com/gh/gbkel/gitorm/tree/master)
 
-A simple ORM to use your Github Repositories as a Database and a Data Bucket with Node.js
+A simple ORM to use your Github Repositories as a Data Bucket with Node.js
 
 ## Features
 
 - Make CRUD requests on files of your Github Repository
-- Use your Github Repository as a non relational database
+- Use your Github Repository as a Data Bucket
 
 ## Installing
 
