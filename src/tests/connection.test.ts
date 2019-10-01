@@ -3,18 +3,17 @@ import gitorm from '../index'
 import * as assert from 'assert'
 
 describe('=> Repository connection', () => {
-	before(() => {
-		console.error = () => {
-			return
-		}
-	})
-
 	it('Should connect to github repository', async () => {
-		const Gitorm = new gitorm({
-			token: process.env.GIT_TOKEN,
-			repository: process.env.GIT_REPOSITORY,
-			owner: process.env.GIT_OWNER
-		})
+		const Gitorm = new gitorm(
+			{
+				token: process.env.GIT_TOKEN,
+				repository: process.env.GIT_REPOSITORY,
+				owner: process.env.GIT_OWNER
+			},
+			{
+				log: false
+			}
+		)
 
 		await Gitorm.connect()
 		assert.notStrictEqual(Gitorm.status, false)

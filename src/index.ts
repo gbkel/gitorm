@@ -1,4 +1,5 @@
 import Api from './modules/Api'
+import { Config, Options } from './definitions'
 
 export default class Gitorm {
 	token: string
@@ -6,10 +7,19 @@ export default class Gitorm {
 	status: any
 	owner: string
 
-	constructor({ token, repository, owner }: Config) {
+	constructor(
+		{ token, repository, owner }: Config,
+		{ log }: Options = { log: true }
+	) {
 		this.token = token
 		this.repository = repository
 		this.owner = owner
+
+		if (!log) {
+			console.error = () => {
+				return
+			}
+		}
 	}
 
 	async connect() {
@@ -28,10 +38,4 @@ export default class Gitorm {
 			console.error(error)
 		}
 	}
-}
-
-interface Config {
-	token: string
-	repository: string
-	owner: string
 }
