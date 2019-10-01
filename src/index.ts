@@ -1,5 +1,5 @@
 import Api from './modules/Api'
-import { Config, Options } from './definitions'
+import { Config, Options, Find, File } from './definitions'
 
 export default class Gitorm {
 	token: string
@@ -36,6 +36,39 @@ export default class Gitorm {
 		} catch (error) {
 			this.status = false
 			console.error(error)
+		}
+	}
+
+	async find({ name, path }: Find) {
+		try {
+			const response = await Api.get(
+				`/repos/${this.owner}/${this.repository}/contents${path}`,
+				{
+					headers: {
+						Authorization: 'token ' + this.token
+					}
+				}
+			)
+			if (response.status !== 200) return false
+
+			const [file] = response.data.filter((file: File) => file.name === name)
+
+			if (!file) return false
+
+			return {
+				name: file.name,
+				path: file.path,
+				sha: file.sha,
+				size: file.size,
+				url: file.url,
+				html_url: file.html_url,
+				git_url: file.git_url,
+				download_url: file.download_url,
+				type: file.type
+			}
+		} catch (error) {
+			console.error(error)
+			return false
 		}
 	}
 }
