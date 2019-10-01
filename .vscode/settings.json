@@ -1,7 +1,7 @@
 {
 	"editor.formatOnSave": true,
 	"path-autocomplete.pathMappings": {
-		"~": "${folder}/app"
+		"~": "${folder}/src"
 	},
 	"editor.tabSize": 2,
 	"editor.autoIndent": true,
