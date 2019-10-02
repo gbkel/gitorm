@@ -172,4 +172,6 @@ class Gitorm {
     }
 }
 exports.default = Gitorm;
+module.exports = Gitorm;
+module.exports.default = Gitorm;
 //# sourceMappingURL=index.js.map
