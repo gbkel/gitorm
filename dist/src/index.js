@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const Api_1 = require("./modules/Api");
 class Gitorm {
-    constructor({ token, repository, owner, log = true }) {
+    constructor({ token, repository, owner, log = false }) {
         this._token = token;
         this._repository = repository;
         this._owner = owner;
