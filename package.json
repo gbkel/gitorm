@@ -5,8 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "ts-mocha -p tsconfig.json src/**/*.test.ts --timeout 10000",
-    "deploy": "git pull && vpdate && git push && npm publish --access public",
-    "dev": "nodemon src/index.test.ts"
+    "deploy": "git pull && vpdate && git push && npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -33,9 +32,7 @@
     "axios": "^0.19.0",
     "dotenv": "^8.1.0",
     "mocha": "^6.2.1",
-    "nodemon": "^1.19.3",
     "ts-mocha": "^6.0.0",
-    "ts-node": "^8.4.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.6.3",
     "vpdate": "^0.1.1"
