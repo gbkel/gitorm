@@ -8,7 +8,7 @@ describe('=> Repository connection', () => {
 			token: process.env.GIT_TOKEN,
 			repository: process.env.GIT_REPOSITORY,
 			owner: process.env.GIT_OWNER,
-			log: true
+			log: false
 		})
 
 		await Gitorm.connect()
