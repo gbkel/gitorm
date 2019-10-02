@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Api_1 = require("./modules/Api");
 class Gitorm {
     constructor({ token, repository, owner, log = true }) {
-        this.token = token;
-        this.repository = repository;
-        this.owner = owner;
+        this._token = token;
+        this._repository = repository;
+        this._owner = owner;
         if (!log) {
             console.error = () => {
                 return;
@@ -24,18 +24,18 @@ class Gitorm {
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const status = yield Api_1.default.get(`/repos/${this.owner}/${this.repository}`, {
+                const status = yield Api_1.default.get(`/repos/${this._owner}/${this._repository}`, {
                     headers: {
-                        Authorization: 'token ' + this.token
+                        Authorization: 'token ' + this._token
                     }
                 });
-                this.status =
+                this._status =
                     status && status.data && status.data.git_url
                         ? status.data.git_url
                         : false;
             }
             catch (error) {
-                this.status = false;
+                this._status = false;
                 console.error(error);
             }
         });
@@ -43,9 +43,9 @@ class Gitorm {
     find({ path }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield Api_1.default.get(`/repos/${this.owner}/${this.repository}/contents/${path}`, {
+                const response = yield Api_1.default.get(`/repos/${this._owner}/${this._repository}/contents/${path}`, {
                     headers: {
-                        Authorization: 'token ' + this.token
+                        Authorization: 'token ' + this._token
                     }
                 });
                 if (response.status !== 200)
@@ -77,13 +77,13 @@ class Gitorm {
                 const fileExists = yield this.find({ path });
                 if (fileExists)
                     return false;
-                const response = yield Api_1.default.put(`/repos/${this.owner}/${this.repository}/contents/${path}`, {
+                const response = yield Api_1.default.put(`/repos/${this._owner}/${this._repository}/contents/${path}`, {
                     message,
                     content: Buffer.from(data).toString('base64'),
                     branch
                 }, {
                     headers: {
-                        Authorization: 'token ' + this.token
+                        Authorization: 'token ' + this._token
                     }
                 });
                 if (response.status !== 200 &&
@@ -115,13 +115,13 @@ class Gitorm {
                 const fileExists = yield this.find({ path });
                 if (!fileExists)
                     return false;
-                const response = yield Api_1.default.put(`/repos/${this.owner}/${this.repository}/contents/${fileExists.path}`, {
+                const response = yield Api_1.default.put(`/repos/${this._owner}/${this._repository}/contents/${fileExists.path}`, {
                     message,
                     content: Buffer.from(data).toString('base64'),
                     sha: fileExists.sha
                 }, {
                     headers: {
-                        Authorization: 'token ' + this.token
+                        Authorization: 'token ' + this._token
                     }
                 });
                 if (response.status !== 200)
@@ -151,13 +151,13 @@ class Gitorm {
                 const fileExists = yield this.find({ path });
                 if (!fileExists)
                     return false;
-                const response = yield Api_1.default.delete(`/repos/${this.owner}/${this.repository}/contents/${fileExists.path}`, {
+                const response = yield Api_1.default.delete(`/repos/${this._owner}/${this._repository}/contents/${fileExists.path}`, {
                     data: {
                         message,
                         sha: fileExists.sha
                     },
                     headers: {
-                        Authorization: 'token ' + this.token
+                        Authorization: 'token ' + this._token
                     }
                 });
                 if (response.status !== 200)
@@ -169,6 +169,9 @@ class Gitorm {
                 return false;
             }
         });
+    }
+    get status() {
+        return this._status;
     }
 }
 exports.default = Gitorm;
