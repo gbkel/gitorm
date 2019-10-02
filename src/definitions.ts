@@ -18,6 +18,7 @@ export interface Create {
 
 export interface Update {
 	data: any
+	path: string
 	message?: any
 }
 

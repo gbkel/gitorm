@@ -111,9 +111,9 @@ export default class Gitorm {
 		}
 	}
 
-	async update({ data, message = 'Update' }: Update, where: Find) {
+	async update({ data, path, message = 'Update' }: Update) {
 		try {
-			const fileExists: boolean | File = await this.find({ path: where.path })
+			const fileExists: boolean | File = await this.find({ path })
 
 			if (!fileExists) return false
 

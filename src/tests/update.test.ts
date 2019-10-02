@@ -26,10 +26,10 @@ describe('=> PUT Request', () => {
 		})
 
 		const newData = JSON.stringify({ teste: 321 })
-		const updatedFile = await Gitorm.update(
-			{ data: newData },
-			{ path: file.path }
-		)
+		const updatedFile = await Gitorm.update({
+			data: newData,
+			path: file.path
+		})
 
 		assert.notStrictEqual(updatedFile, false)
 	})
