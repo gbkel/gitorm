@@ -2,10 +2,10 @@
   "name": "gitorm",
   "version": "0.0.7",
   "description": "A simple ORM to use your Github Repositories as a Database and a Data Bucket with Node.js",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "test": "ts-mocha -p tsconfig.json src/**/*.test.ts --timeout 10000",
-    "deploy": "git pull && vpdate && git push && npm publish --access public"
+    "deploy": "tsc && git pull && vpdate && git push && npm publish --access public"
   },
   "repository": {
     "type": "git",

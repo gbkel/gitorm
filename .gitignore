@@ -1,8 +1,5 @@
 # node modules
 /node_modules
 
-# built typescript
-/dist
-
 # environmental
 .env
