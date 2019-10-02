@@ -40,7 +40,7 @@ await Gitorm.connect()
 
 ```js
 // Finding a file
-const file = await Gitorm.find({ name: 'index.txt', path: '/src' })
+const file = await Gitorm.find({ name: 'index.txt', path: 'src/' })
 ```
 
 #### gitorm.create(options)
@@ -50,6 +50,6 @@ const file = await Gitorm.find({ name: 'index.txt', path: '/src' })
 const file = await Gitorm.create({
 	name: 'index.json',
 	data: '{ "test": 123 }',
-	path: '/src'
+	path: 'src/'
 })
 ```

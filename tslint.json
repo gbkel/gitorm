@@ -4,7 +4,7 @@
 		"deprecation": {
 			"severity": "warn"
 		},
-		"max-line-length": [true, 200],
+		"max-line-length": [true, 300],
 		"member-access": false,
 		"member-ordering": [
 			true,

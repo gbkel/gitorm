@@ -3,7 +3,7 @@ import gitorm from '../index'
 import * as assert from 'assert'
 import generateRandomNumber from '../utils/RandomNumber'
 
-describe('=> POST Request', () => {
+describe('=> PUT Request', () => {
 	let Gitorm: gitorm
 	let fileName: string
 
@@ -18,21 +18,19 @@ describe('=> POST Request', () => {
 		fileName = `test${generateRandomNumber(0, 1e10)}`
 	})
 
-	it('Should create a file', async () => {
+	it('Should update a file', async () => {
 		const data = JSON.stringify({ teste: 123 })
-		const file = await Gitorm.create({
+		const file: any = await Gitorm.create({
 			data,
 			path: 'src/' + `${fileName}.json`
 		})
-		assert.notStrictEqual(file, false)
-	})
 
-	it('Should fail to create a file that already exists', async () => {
-		const data = JSON.stringify({ teste: 123 })
-		const file = await Gitorm.create({
-			data,
-			path: 'src/' + `${fileName}.json`
-		})
-		assert.strictEqual(file, false)
+		const newData = JSON.stringify({ teste: 321 })
+		const updatedFile = await Gitorm.update(
+			{ data: newData },
+			{ path: file.path }
+		)
+
+		assert.notStrictEqual(updatedFile, false)
 	})
 })

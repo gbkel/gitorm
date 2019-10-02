@@ -2,26 +2,27 @@ export interface Config {
 	token: string
 	repository: string
 	owner: string
-}
-
-export interface ConfigOptions {
-	log: boolean
+	log?: boolean
 }
 
 export interface Find {
-	name: string
 	path: string
 }
 
 export interface Create {
-	name: string
 	data: any
 	path: string
+	message?: string
+	branch?: string
 }
 
-export interface CreateOptions {
-	message: string
-	branch: string
+export interface Update {
+	data: any
+	message?: any
+}
+
+export interface Where {
+	path: string
 }
 
 export interface File {

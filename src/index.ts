@@ -1,13 +1,5 @@
 import Api from './modules/Api'
-import fetch from 'node-fetch'
-import {
-	Config,
-	ConfigOptions,
-	Find,
-	File,
-	Create,
-	CreateOptions
-} from './definitions'
+import { Config, Find, File, Create, Update, Where } from './definitions'
 
 export default class Gitorm {
 	token: string
@@ -15,10 +7,7 @@ export default class Gitorm {
 	status: any
 	owner: string
 
-	constructor(
-		{ token, repository, owner }: Config,
-		{ log }: ConfigOptions = { log: true }
-	) {
+	constructor({ token, repository, owner, log = true }: Config) {
 		this.token = token
 		this.repository = repository
 		this.owner = owner
@@ -47,10 +36,10 @@ export default class Gitorm {
 		}
 	}
 
-	async find({ name, path }: Find) {
+	async find({ path }: Find) {
 		try {
 			const response = await Api.get(
-				`/repos/${this.owner}/${this.repository}/contents${path}`,
+				`/repos/${this.owner}/${this.repository}/contents/${path}`,
 				{
 					headers: {
 						Authorization: 'token ' + this.token
@@ -59,7 +48,7 @@ export default class Gitorm {
 			)
 			if (response.status !== 200) return false
 
-			const [file] = response.data.filter((file: File) => file.name === name)
+			const file: File = response.data
 
 			if (!file) return false
 
@@ -80,17 +69,10 @@ export default class Gitorm {
 		}
 	}
 
-	async create(
-		{ name, data, path }: Create,
-		{ message, branch }: CreateOptions = {
-			message: `Create ${name}`,
-			branch: 'master'
-		}
-	) {
+	async create({ data, path, message = 'Create', branch = 'master' }: Create) {
 		try {
-			path = path !== '/' ? path + '/' : path
 			const response = await Api.put(
-				`/repos/${this.owner}/${this.repository}/contents${path + name}`,
+				`/repos/${this.owner}/${this.repository}/contents/${path}`,
 				{
 					message,
 					content: Buffer.from(data).toString('base64'),
@@ -109,6 +91,47 @@ export default class Gitorm {
 				response.status !== 422
 			)
 				return false
+
+			const file: File = response.data.content
+
+			return {
+				name: file.name,
+				path: file.path,
+				sha: file.sha,
+				size: file.size,
+				url: file.url,
+				html_url: file.html_url,
+				git_url: file.git_url,
+				download_url: file.download_url,
+				type: file.type
+			}
+		} catch (error) {
+			console.error(error)
+			return false
+		}
+	}
+
+	async update({ data, message = 'Update' }: Update, where: Find) {
+		try {
+			const fileExists: boolean | File = await this.find({ path: where.path })
+
+			if (!fileExists) return false
+
+			const response = await Api.put(
+				`/repos/${this.owner}/${this.repository}/contents/${fileExists.path}`,
+				{
+					message,
+					content: Buffer.from(data).toString('base64'),
+					sha: fileExists.sha
+				},
+				{
+					headers: {
+						Authorization: 'token ' + this.token
+					}
+				}
+			)
+
+			if (response.status !== 200) return false
 
 			const file: File = response.data.content
 
