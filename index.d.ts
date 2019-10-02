@@ -42,7 +42,6 @@ export interface File {
 }
 
 export interface GitormInterface extends gitorm {
-	new ({ token, repository, owner, log }: Config)
 	connect: () => any
 	find({ path }: Find): Promise<File | boolean>
 	create({ data, path, message, branch }: Create): Promise<File | boolean>
