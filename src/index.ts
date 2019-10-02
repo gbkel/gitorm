@@ -71,6 +71,10 @@ export default class Gitorm {
 
 	async create({ data, path, message = 'Create', branch = 'master' }: Create) {
 		try {
+			const fileExists: boolean | File = await this.find({ path })
+
+			if (fileExists) return false
+
 			const response = await Api.put(
 				`/repos/${this.owner}/${this.repository}/contents/${path}`,
 				{
