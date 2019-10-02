@@ -1,1 +1,1 @@
-module.exports = require('./src/index.ts')
+module.exports = require('./dist/src/index.ts')
