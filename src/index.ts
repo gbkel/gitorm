@@ -2,10 +2,10 @@ import Api from './modules/Api'
 import { Config, Find, File, Create, Update, Delete } from './index.d'
 
 export default class Gitorm {
-	_token: string
-	_repository: string
-	_status: any
-	_owner: string
+	private _token: string
+	private _repository: string
+	private _status: any
+	private _owner: string
 
 	constructor({ token, repository, owner, log = true }: Config) {
 		this._token = token
@@ -19,7 +19,7 @@ export default class Gitorm {
 		}
 	}
 
-	async connect() {
+	async connect(): Promise<void | boolean> {
 		try {
 			const status = await Api.get(
 				`/repos/${this._owner}/${this._repository}`,
@@ -39,7 +39,7 @@ export default class Gitorm {
 		}
 	}
 
-	async find({ path }: Find) {
+	async find({ path }: Find): Promise<File | boolean> {
 		try {
 			const response = await Api.get(
 				`/repos/${this._owner}/${this._repository}/contents/${path}`,
@@ -72,7 +72,12 @@ export default class Gitorm {
 		}
 	}
 
-	async create({ data, path, message = 'Create', branch = 'master' }: Create) {
+	async create({
+		data,
+		path,
+		message = 'Create',
+		branch = 'master'
+	}: Create): Promise<File | boolean> {
 		try {
 			const fileExists: boolean | File = await this.find({ path })
 
@@ -118,9 +123,13 @@ export default class Gitorm {
 		}
 	}
 
-	async update({ data, path, message = 'Update' }: Update) {
+	async update({
+		data,
+		path,
+		message = 'Update'
+	}: Update): Promise<File | boolean> {
 		try {
-			const fileExists: boolean | File = await this.find({ path })
+			const fileExists: any = await this.find({ path })
 
 			if (!fileExists) return false
 
@@ -159,9 +168,9 @@ export default class Gitorm {
 		}
 	}
 
-	async delete({ path, message = 'Delete' }: Delete) {
+	async delete({ path, message = 'Delete' }: Delete): Promise<boolean> {
 		try {
-			const fileExists: boolean | File = await this.find({ path })
+			const fileExists: any = await this.find({ path })
 
 			if (!fileExists) return false
 
@@ -187,7 +196,7 @@ export default class Gitorm {
 		}
 	}
 
-	get status() {
+	get status(): boolean {
 		return this._status
 	}
 }
