@@ -1,4 +1,4 @@
-import gitorm from 'index'
+import gitorm from './src/index'
 
 export interface Config {
 	token: string
