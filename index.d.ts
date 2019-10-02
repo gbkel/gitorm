@@ -46,7 +46,7 @@ export interface GitormInterface extends gitorm {
 	find({ path }: Find): Promise<File | boolean>
 	create({ data, path, message, branch }: Create): Promise<File | boolean>
 	update({ data, path, message }: Update): Promise<File | boolean>
-	delete({ path }: Delete): Promise<boolean>
+	delete({ path, message }: Delete): Promise<boolean>
 	status: boolean
 }
 
