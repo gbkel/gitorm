@@ -2,7 +2,7 @@
   "name": "gitorm",
   "version": "0.0.13",
   "description": "A simple ORM to use your Github Repositories as a Database and a Data Bucket with Node.js",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "test": "ts-mocha -p tsconfig.json src/**/*.test.ts --timeout 10000",
