@@ -73,7 +73,7 @@ const updatedFile = await Gitorm.update({
 #### gitorm.delete(options)
 
 ```js
-// Updating a file
+// Deleting a file
 const fileName = 'index.json'
 const file = await Gitorm.delete({
 	path: `src/${fileName}`
