@@ -50,9 +50,9 @@ const file = await Gitorm.find({
 
 ```js
 // Creating a file
-const newName = 'index.json'
-const newData = { test: 123 }
-const newFile = await Gitorm.create({
+const fileName = 'index.json'
+const fileData = { test: 123 }
+const file = await Gitorm.create({
 	data: JSON.stringify(fileData),
 	path: `src/${fileName}`
 })
@@ -65,7 +65,7 @@ const newFile = await Gitorm.create({
 const fileName = 'index.json'
 const updatedData = { test: 123 }
 const updatedFile = await Gitorm.update({
-	data: JSON.stringify(fileData),
+	data: JSON.stringify(updatedData),
 	path: `src/${fileName}`
 })
 ```
