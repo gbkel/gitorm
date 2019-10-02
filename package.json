@@ -29,12 +29,14 @@
     "@types/expect": "^1.20.4",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.8",
-    "axios": "^0.19.0",
     "dotenv": "^8.1.0",
     "mocha": "^6.2.1",
     "ts-mocha": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.6.3",
     "vpdate": "^0.1.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.0"
   }
 }
