@@ -48,6 +48,7 @@ export interface GitormInterface extends gitorm {
 	create: ({ data, path, message, branch }: Create) => Promise<any>
 	update: ({ data, path, message }: Update) => Promise<any>
 	delete: ({ path }: Delete) => Promise<any>
+	status: boolean
 }
 
 declare const Gitorm: GitormInterface

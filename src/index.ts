@@ -2,15 +2,15 @@ import Api from './modules/Api'
 import { Config, Find, File, Create, Update, Delete } from './index.d'
 
 export default class Gitorm {
-	token: string
-	repository: string
-	status: any
-	owner: string
+	_token: string
+	_repository: string
+	_status: any
+	_owner: string
 
 	constructor({ token, repository, owner, log = true }: Config) {
-		this.token = token
-		this.repository = repository
-		this.owner = owner
+		this._token = token
+		this._repository = repository
+		this._owner = owner
 
 		if (!log) {
 			console.error = () => {
@@ -21,17 +21,20 @@ export default class Gitorm {
 
 	async connect() {
 		try {
-			const status = await Api.get(`/repos/${this.owner}/${this.repository}`, {
-				headers: {
-					Authorization: 'token ' + this.token
+			const status = await Api.get(
+				`/repos/${this._owner}/${this._repository}`,
+				{
+					headers: {
+						Authorization: 'token ' + this._token
+					}
 				}
-			})
-			this.status =
+			)
+			this._status =
 				status && status.data && status.data.git_url
 					? status.data.git_url
 					: false
 		} catch (error) {
-			this.status = false
+			this._status = false
 			console.error(error)
 		}
 	}
@@ -39,10 +42,10 @@ export default class Gitorm {
 	async find({ path }: Find) {
 		try {
 			const response = await Api.get(
-				`/repos/${this.owner}/${this.repository}/contents/${path}`,
+				`/repos/${this._owner}/${this._repository}/contents/${path}`,
 				{
 					headers: {
-						Authorization: 'token ' + this.token
+						Authorization: 'token ' + this._token
 					}
 				}
 			)
@@ -76,7 +79,7 @@ export default class Gitorm {
 			if (fileExists) return false
 
 			const response = await Api.put(
-				`/repos/${this.owner}/${this.repository}/contents/${path}`,
+				`/repos/${this._owner}/${this._repository}/contents/${path}`,
 				{
 					message,
 					content: Buffer.from(data).toString('base64'),
@@ -84,7 +87,7 @@ export default class Gitorm {
 				},
 				{
 					headers: {
-						Authorization: 'token ' + this.token
+						Authorization: 'token ' + this._token
 					}
 				}
 			)
@@ -122,7 +125,7 @@ export default class Gitorm {
 			if (!fileExists) return false
 
 			const response = await Api.put(
-				`/repos/${this.owner}/${this.repository}/contents/${fileExists.path}`,
+				`/repos/${this._owner}/${this._repository}/contents/${fileExists.path}`,
 				{
 					message,
 					content: Buffer.from(data).toString('base64'),
@@ -130,7 +133,7 @@ export default class Gitorm {
 				},
 				{
 					headers: {
-						Authorization: 'token ' + this.token
+						Authorization: 'token ' + this._token
 					}
 				}
 			)
@@ -163,14 +166,14 @@ export default class Gitorm {
 			if (!fileExists) return false
 
 			const response = await Api.delete(
-				`/repos/${this.owner}/${this.repository}/contents/${fileExists.path}`,
+				`/repos/${this._owner}/${this._repository}/contents/${fileExists.path}`,
 				{
 					data: {
 						message,
 						sha: fileExists.sha
 					},
 					headers: {
-						Authorization: 'token ' + this.token
+						Authorization: 'token ' + this._token
 					}
 				}
 			)
@@ -182,6 +185,10 @@ export default class Gitorm {
 			console.error(error)
 			return false
 		}
+	}
+
+	get status() {
+		return this._status
 	}
 }
 
