@@ -42,12 +42,12 @@ export interface File {
 }
 
 export interface GitormInterface extends gitorm {
-	({ token, repository, owner, log }: Config)
+	new ({ token, repository, owner, log }: Config)
 	connect: () => any
-	find: ({ path }: Find) => Promise<File | boolean>
-	create: ({ data, path, message, branch }: Create) => Promise<File | boolean>
-	update: ({ data, path, message }: Update) => Promise<File | boolean>
-	delete: ({ path }: Delete) => Promise<boolean>
+	find({ path }: Find): Promise<File | boolean>
+	create({ data, path, message, branch }: Create): Promise<File | boolean>
+	update({ data, path, message }: Update): Promise<File | boolean>
+	delete({ path }: Delete): Promise<boolean>
 	status: boolean
 }
 
