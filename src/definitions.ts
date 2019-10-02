@@ -22,8 +22,9 @@ export interface Update {
 	message?: any
 }
 
-export interface Where {
+export interface Delete {
 	path: string
+	message?: string
 }
 
 export interface File {

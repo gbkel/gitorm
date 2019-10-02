@@ -1,5 +1,5 @@
 import Api from './modules/Api'
-import { Config, Find, File, Create, Update, Where } from './definitions'
+import { Config, Find, File, Create, Update, Delete } from './definitions'
 
 export default class Gitorm {
 	token: string
@@ -146,6 +146,34 @@ export default class Gitorm {
 				download_url: file.download_url,
 				type: file.type
 			}
+		} catch (error) {
+			console.error(error)
+			return false
+		}
+	}
+
+	async delete({ path, message = 'Delete' }: Delete) {
+		try {
+			const fileExists: boolean | File = await this.find({ path })
+
+			if (!fileExists) return false
+
+			const response = await Api.delete(
+				`/repos/${this.owner}/${this.repository}/contents/${fileExists.path}`,
+				{
+					data: {
+						message,
+						sha: fileExists.sha
+					},
+					headers: {
+						Authorization: 'token ' + this.token
+					}
+				}
+			)
+
+			if (response.status !== 200) return false
+
+			return true
 		} catch (error) {
 			console.error(error)
 			return false
