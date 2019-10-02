@@ -42,6 +42,8 @@ class Gitorm {
     }
     find({ path }) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this._status)
+                return false;
             try {
                 const response = yield Api_1.default.get(`/repos/${this._owner}/${this._repository}/contents/${path}`, {
                     headers: {
@@ -73,6 +75,8 @@ class Gitorm {
     }
     create({ data, path, message = 'Create', branch = 'master' }) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this._status)
+                return false;
             try {
                 const fileExists = yield this.find({ path });
                 if (fileExists)
@@ -111,6 +115,8 @@ class Gitorm {
     }
     update({ data, path, message = 'Update' }) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this._status)
+                return false;
             try {
                 const fileExists = yield this.find({ path });
                 if (!fileExists)
@@ -147,6 +153,8 @@ class Gitorm {
     }
     delete({ path, message = 'Delete' }) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this._status)
+                return false;
             try {
                 const fileExists = yield this.find({ path });
                 if (!fileExists)
