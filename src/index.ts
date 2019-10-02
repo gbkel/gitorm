@@ -15,7 +15,7 @@ export default class Gitorm implements GitormInterface {
 	private _status: any
 	private _owner: string
 
-	constructor({ token, repository, owner, log = true }: Config) {
+	constructor({ token, repository, owner, log = false }: Config) {
 		this._token = token
 		this._repository = repository
 		this._owner = owner
