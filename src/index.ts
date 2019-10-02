@@ -1,5 +1,5 @@
 import Api from './modules/Api'
-import { Config, Find, File, Create, Update, Delete } from './definitions'
+import { Config, Find, File, Create, Update, Delete } from './index.d'
 
 export default class Gitorm {
 	token: string
@@ -184,3 +184,6 @@ export default class Gitorm {
 		}
 	}
 }
+
+module.exports = Gitorm
+module.exports.default = Gitorm

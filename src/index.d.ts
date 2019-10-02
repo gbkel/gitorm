@@ -1,3 +1,5 @@
+import gitorm from 'index'
+
 export interface Config {
 	token: string
 	repository: string
@@ -38,3 +40,16 @@ export interface File {
 	download_url: string
 	type: string
 }
+
+export interface GitormInterface extends gitorm {
+	({ token, repository, owner, log }: Config)
+	connect: () => any
+	find: ({ path }: Find) => Promise<any>
+	create: ({ data, path, message, branch }: Create) => Promise<any>
+	update: ({ data, path, message }: Update) => Promise<any>
+	delete: ({ path }: Delete) => Promise<any>
+}
+
+declare const Gitorm: GitormInterface
+
+export default Gitorm
