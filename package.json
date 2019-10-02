@@ -4,8 +4,9 @@
   "description": "A simple ORM to use your Github Repositories as a Database and a Data Bucket with Node.js",
   "main": "dist/index.js",
   "scripts": {
+    "predeploy": "tsc && git add dist && git commit -m 'deploy'",
     "test": "ts-mocha -p tsconfig.json src/**/*.test.ts --timeout 10000",
-    "deploy": "tsc && git pull && vpdate && git push && npm publish --access public"
+    "deploy": "git pull && vpdate && git push && npm publish --access public"
   },
   "repository": {
     "type": "git",
