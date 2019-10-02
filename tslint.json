@@ -4,7 +4,7 @@
 		"deprecation": {
 			"severity": "warn"
 		},
-		"max-line-length": [true, 140],
+		"max-line-length": [true, 200],
 		"member-access": false,
 		"member-ordering": [
 			true,
@@ -37,6 +37,7 @@
 		"trailing-comma": false,
 		"extends": ["tslint:latest", "tslint-config-prettier"],
 		"curly": false,
-		"no-shadowed-variable": false
+		"no-shadowed-variable": false,
+		"align": false
 	}
 }

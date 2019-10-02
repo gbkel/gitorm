@@ -21,7 +21,7 @@ $ npm install gitorm
 
 #### gitorm(config)
 
-To use Gitorm, you'll need to generate a token with repo scope on [Github Developer Settings](https://github.com/settings/tokens).
+To use Gitorm, you'll need to generate a token with **repo** and **user** scopes on [Github Developer Settings](https://github.com/settings/tokens).
 
 ```js
 // Creating a connection

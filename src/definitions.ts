@@ -4,13 +4,24 @@ export interface Config {
 	owner: string
 }
 
-export interface Options {
+export interface ConfigOptions {
 	log: boolean
 }
 
 export interface Find {
 	name: string
 	path: string
+}
+
+export interface Create {
+	name: string
+	data: any
+	path: string
+}
+
+export interface CreateOptions {
+	message: string
+	branch: string
 }
 
 export interface File {

@@ -1,5 +1,13 @@
 import Api from './modules/Api'
-import { Config, Options, Find, File } from './definitions'
+import fetch from 'node-fetch'
+import {
+	Config,
+	ConfigOptions,
+	Find,
+	File,
+	Create,
+	CreateOptions
+} from './definitions'
 
 export default class Gitorm {
 	token: string
@@ -9,7 +17,7 @@ export default class Gitorm {
 
 	constructor(
 		{ token, repository, owner }: Config,
-		{ log }: Options = { log: true }
+		{ log }: ConfigOptions = { log: true }
 	) {
 		this.token = token
 		this.repository = repository
@@ -54,6 +62,55 @@ export default class Gitorm {
 			const [file] = response.data.filter((file: File) => file.name === name)
 
 			if (!file) return false
+
+			return {
+				name: file.name,
+				path: file.path,
+				sha: file.sha,
+				size: file.size,
+				url: file.url,
+				html_url: file.html_url,
+				git_url: file.git_url,
+				download_url: file.download_url,
+				type: file.type
+			}
+		} catch (error) {
+			console.error(error)
+			return false
+		}
+	}
+
+	async create(
+		{ name, data, path }: Create,
+		{ message, branch }: CreateOptions = {
+			message: `Create ${name}`,
+			branch: 'master'
+		}
+	) {
+		try {
+			path = path !== '/' ? path + '/' : path
+			const response = await Api.put(
+				`/repos/${this.owner}/${this.repository}/contents${path + name}`,
+				{
+					message,
+					content: Buffer.from(data).toString('base64'),
+					branch
+				},
+				{
+					headers: {
+						Authorization: 'token ' + this.token
+					}
+				}
+			)
+
+			if (
+				response.status !== 200 &&
+				response.status !== 201 &&
+				response.status !== 422
+			)
+				return false
+
+			const file: File = response.data.content
 
 			return {
 				name: file.name,
