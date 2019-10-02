@@ -73,6 +73,29 @@ class Gitorm {
             }
         });
     }
+    findAll({ path }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this._status)
+                return false;
+            try {
+                const response = yield Api_1.default.get(`/repos/${this._owner}/${this._repository}/contents/${path}`, {
+                    headers: {
+                        Authorization: 'token ' + this._token
+                    }
+                });
+                if (response.status !== 200)
+                    return false;
+                const files = response.data;
+                if (!files || files.length === 0)
+                    return false;
+                return files;
+            }
+            catch (error) {
+                console.error(error);
+                return false;
+            }
+        });
+    }
     create({ data, path, message = 'Create', branch = 'master' }) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this._status)

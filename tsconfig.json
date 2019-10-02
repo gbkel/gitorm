@@ -1,22 +1,17 @@
 {
-    "compilerOptions": {
-        "resolveJsonModule": true,
-        "target": "es6",
-        "module": "commonjs",
-        "rootDir": ".",
-        "outDir": "dist",
-        "allowJs": true,
-        "sourceMap": true,
-        "baseUrl": "./src",
-        "paths": {
-            "~/*": ["app/*"]
-        }
-    },
-    "include": [
-        "src/**/*.ts"
-    ],
-    "exclude": [
-        "node_modules",
-        ".vscode"
-    ]
+	"compilerOptions": {
+		"resolveJsonModule": true,
+		"target": "es6",
+		"module": "commonjs",
+		"rootDir": ".",
+		"outDir": "dist",
+		"allowJs": true,
+		"sourceMap": true,
+		"baseUrl": "./src",
+		"paths": {
+			"~/*": ["app/*"]
+		}
+	},
+	"include": ["src/**/*.ts", "index.d.ts"],
+	"exclude": ["node_modules", ".vscode"]
 }

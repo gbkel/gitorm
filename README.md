@@ -34,6 +34,7 @@ const Gitorm = new gitorm({
 })
 
 await Gitorm.connect()
+console.log(Gitorm.status)
 ```
 
 #### gitorm.find(options)
@@ -43,6 +44,15 @@ await Gitorm.connect()
 const fileName = 'index.txt'
 const file = await Gitorm.find({
 	path: `src/${fileName}`
+})
+```
+
+#### gitorm.findAll(options)
+
+```js
+// Finding all files on a directory
+const file = await Gitorm.findAll({
+	path: 'src/'
 })
 ```
 

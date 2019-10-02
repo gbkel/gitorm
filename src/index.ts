@@ -82,6 +82,31 @@ export default class Gitorm implements GitormInterface {
 		}
 	}
 
+	async findAll({ path }: Find): Promise<File[] | boolean> {
+		if (!this._status) return false
+
+		try {
+			const response = await Api.get(
+				`/repos/${this._owner}/${this._repository}/contents/${path}`,
+				{
+					headers: {
+						Authorization: 'token ' + this._token
+					}
+				}
+			)
+			if (response.status !== 200) return false
+
+			const files: File[] = response.data
+
+			if (!files || files.length === 0) return false
+
+			return files
+		} catch (error) {
+			console.error(error)
+			return false
+		}
+	}
+
 	async create({
 		data,
 		path,
