@@ -1,6 +1,6 @@
 {
   "name": "gitorm",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A simple ORM to use your Github Repositories as a Database and a Data Bucket with Node.js",
   "main": "dist/index.js",
   "scripts": {
