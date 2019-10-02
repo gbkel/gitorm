@@ -48,6 +48,8 @@ export default class Gitorm implements GitormInterface {
 	}
 
 	async find({ path }: Find): Promise<File | boolean> {
+		if (!this._status) return false
+
 		try {
 			const response = await Api.get(
 				`/repos/${this._owner}/${this._repository}/contents/${path}`,
@@ -86,6 +88,8 @@ export default class Gitorm implements GitormInterface {
 		message = 'Create',
 		branch = 'master'
 	}: Create): Promise<File | boolean> {
+		if (!this._status) return false
+
 		try {
 			const fileExists: boolean | File = await this.find({ path })
 
@@ -136,6 +140,8 @@ export default class Gitorm implements GitormInterface {
 		path,
 		message = 'Update'
 	}: Update): Promise<File | boolean> {
+		if (!this._status) return false
+
 		try {
 			const fileExists: any = await this.find({ path })
 
@@ -177,6 +183,8 @@ export default class Gitorm implements GitormInterface {
 	}
 
 	async delete({ path, message = 'Delete' }: Delete): Promise<boolean> {
+		if (!this._status) return false
+
 		try {
 			const fileExists: any = await this.find({ path })
 
