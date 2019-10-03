@@ -9,7 +9,7 @@ import {
 	GitormInterface
 } from '../index.d'
 
-export default class Gitorm implements GitormInterface {
+export default class Gitorm {
 	private _token: string
 	private _repository: string
 	private _status: any

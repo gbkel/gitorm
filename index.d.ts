@@ -41,7 +41,8 @@ export interface File {
 	type: string
 }
 
-export interface GitormInterface extends gitorm {
+export interface GitormInterface {
+	new ({ token, repository, owner, log }: Config)
 	connect: () => any
 	find({ path }: Find): Promise<File | boolean>
 	findAll({ path }: Find): Promise<File[] | boolean>
