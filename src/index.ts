@@ -1,13 +1,5 @@
 import Api from './modules/Api'
-import {
-	Config,
-	Find,
-	File,
-	Create,
-	Update,
-	Delete,
-	GitormInterface
-} from '../index.d'
+import { Config, Find, File, Create, Update, Delete } from '../index.d'
 
 export default class Gitorm {
 	private _token: string
