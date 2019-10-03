@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/gitorm.svg?style=flat-square)](https://www.npmjs.org/package/gitorm)
 [![install size](https://packagephobia.now.sh/badge?p=gitorm)](https://packagephobia.now.sh/result?p=gitorm)
+[![npm downloads](https://img.shields.io/npm/dm/gitorm.svg?style=flat-square)](http://npm-stat.com/charts.html?package=gitorm)
 [![CircleCI](https://circleci.com/gh/gbkel/gitorm/tree/master.svg?style=svg&circle-token=7bc6803f375b9f53b5dc1fd4e80739595caea83d)](https://circleci.com/gh/gbkel/gitorm/tree/master)
 
 A simple ORM to use your Github Repositories as a Database and a Data Bucket with Node.js
