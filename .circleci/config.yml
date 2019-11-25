@@ -1,4 +1,3 @@
-version: 2
 jobs:
   build:
     working_directory: ~/project
@@ -29,3 +28,15 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: test-results.xml
+
+workflows: 
+  version: 2
+  commit-workflow:
+    jobs:
+      - build
+  schedule-workflow:
+    triggers:
+      - schedule:
+          cron: "0 1 * * *"
+    jobs:
+      - build
